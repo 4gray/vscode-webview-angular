@@ -1,27 +1,33 @@
-# AngularWebviewVscode
+# VSCode Webview based on Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+This project contains starter template for your next VSCode extension based on `Angular` framework.
 
-## Development server
+<div align="center">
+<img src="https://raw.githubusercontent.com/4gray/vscode-webview-angular/master/screenshot.png" width="" alt="Screenshot" title="VSCode Webview Angular" />
+</div>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Project was inspired by:
+* [vscode-webview-react](https://github.com/rebornix/vscode-webview-react)
+* [VSCode Webview API](https://code.visualstudio.com/api/extension-guides/webview)
 
-## Code scaffolding
+## Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project was generated with `Angular CLI`, so it can be be used for angular development by default.
 
-## Build
+To test your extension in vscode context:
+```
+$ yarn install
+$ yarn run build
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+After build process you can press F5 to "Start Debugging" (or: select in menu "Debug" -> "Start Debugging"). A new window will open in which you need to open command palette (Ctrl/Cmd + Shift + P) and select "Angular: Open Webview" to start your extension.
 
-## Running unit tests
+## Packaging
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To generate extension in `VSIX` format execute the package command:
 
-## Running end-to-end tests
+```
+yarn run package
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Finally the generated VSIX file with VSCode extension should appear in the root folder of your project.
