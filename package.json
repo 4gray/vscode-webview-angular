@@ -3,7 +3,7 @@
     "description": "Starter template for your next VSCode extension based on Angular",
     "version": "1.0.0",
     "engines": {
-        "vscode": "^1.41.0"
+        "vscode": "^1.52.0"
     },
     "main": "./dist/ext-src/extension.js",
     "publisher": "4gray",
@@ -65,7 +65,7 @@
         "ts-node": "~7.0.0",
         "tslint": "~6.1.0",
         "typescript": "~4.0.5",
-        "vsce": "^1.71.0"
+        "vsce": "^1.83.0"
     },
     "repository": {
         "type": "git",
