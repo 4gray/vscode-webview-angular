@@ -5,3 +5,4 @@ e2e
 ext-src
 node_modules
 src
+.angular
