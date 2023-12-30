@@ -7,14 +7,16 @@ This project contains starter template for your next VSCode extension based on `
 </div>
 
 Project was inspired by:
-* [vscode-webview-react](https://github.com/rebornix/vscode-webview-react)
-* [VSCode Webview API](https://code.visualstudio.com/api/extension-guides/webview)
+
+- [vscode-webview-react](https://github.com/rebornix/vscode-webview-react)
+- [VSCode Webview API](https://code.visualstudio.com/api/extension-guides/webview)
 
 ## Development
 
 This project was generated with `Angular CLI`, so it can be be used for angular development by default.
 
 To test your extension in vscode context:
+
 ```
 $ yarn install
 $ yarn run build

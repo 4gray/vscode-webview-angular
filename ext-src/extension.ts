@@ -19,14 +19,19 @@ class WebPanel {
   private disposables: vscode.Disposable[] = [];
 
   public static createOrShow(extensionPath: string) {
-    const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+    const column = vscode.window.activeTextEditor
+      ? vscode.window.activeTextEditor.viewColumn
+      : undefined;
 
     // If we already have a panel, show it.
     // Otherwise, create angular panel.
     if (WebPanel.currentPanel) {
       WebPanel.currentPanel.panel.reveal(column);
     } else {
-      WebPanel.currentPanel = new WebPanel(extensionPath, column || vscode.ViewColumn.One);
+      WebPanel.currentPanel = new WebPanel(
+        extensionPath,
+        column || vscode.ViewColumn.One,
+      );
     }
     return WebPanel.currentPanel;
   }
@@ -36,13 +41,20 @@ class WebPanel {
     this.builtAppFolder = 'dist';
 
     // Create and show a new webview panel
-    this.panel = vscode.window.createWebviewPanel(WebPanel.viewType, 'My Angular Webview', column, {
-      // Enable javascript in the webview
-      enableScripts: true,
+    this.panel = vscode.window.createWebviewPanel(
+      WebPanel.viewType,
+      'My Angular Webview',
+      column,
+      {
+        // Enable javascript in the webview
+        enableScripts: true,
 
-      // And restrict the webview to only loading content from our extension's `media` directory.
-      localResourceRoots: [vscode.Uri.file(path.join(this.extensionPath, this.builtAppFolder))]
-    });
+        // And restrict the webview to only loading content from our extension's `media` directory.
+        localResourceRoots: [
+          vscode.Uri.file(path.join(this.extensionPath, this.builtAppFolder)),
+        ],
+      },
+    );
 
     // Set the webview's initial html content
     this.panel.webview.html = this._getHtmlForWebview();
@@ -61,7 +73,7 @@ class WebPanel {
         }
       },
       null,
-      this.disposables
+      this.disposables,
     );
   }
 
@@ -97,7 +109,10 @@ class WebPanel {
     let indexHtml = fs.readFileSync(indexPath, { encoding: 'utf8' });
 
     // update the base URI tag
-    indexHtml = indexHtml.replace('<base href="/">', `<base href="${String(baseUri)}/">`);
+    indexHtml = indexHtml.replace(
+      '<base href="/">',
+      `<base href="${String(baseUri)}/">`,
+    );
 
     return indexHtml;
   }
@@ -111,6 +126,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('angular-webview.start', () => {
       WebPanel.createOrShow(context.extensionPath);
-    })
+    }),
   );
 }
