@@ -13,6 +13,11 @@
         "command": "angular-webview.start",
         "title": "Open webview",
         "category": "Angular"
+      },
+      {
+        "command": "angular-webview.update-title",
+        "title": "Update title",
+        "category": "Angular"
       }
     ]
   },

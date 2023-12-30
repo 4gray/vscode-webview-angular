@@ -36,6 +36,30 @@ class WebPanel {
     return WebPanel.currentPanel;
   }
 
+  public static updateTitle(extensionPath: string) {
+    const column = vscode.window.activeTextEditor
+      ? vscode.window.activeTextEditor.viewColumn
+      : undefined;
+
+    // If we already have a panel, show it.
+    // Otherwise, create angular panel.
+    if (WebPanel.currentPanel) {
+      WebPanel.currentPanel.panel.reveal(column);
+    } else {
+      WebPanel.currentPanel = new WebPanel(
+        extensionPath,
+        column || vscode.ViewColumn.One,
+      );
+    }
+
+    WebPanel.currentPanel.panel.webview.postMessage({
+      command: 'update-title',
+      payload: {
+        title: `Hello from ${extensionPath} - ${Date().toString()}`,
+      },
+    });
+  }
+
   private constructor(extensionPath: string, column: vscode.ViewColumn) {
     this.extensionPath = extensionPath;
     this.builtAppFolder = 'dist';
@@ -65,9 +89,10 @@ class WebPanel {
 
     // Handle messages from the webview
     this.panel.webview.onDidReceiveMessage(
-      (message: any) => {
+      (message) => {
         switch (message.command) {
-          case 'alert':
+          case 'notification':
+            vscode.window.showInformationMessage(message.data.text);
             vscode.window.showErrorMessage(message.text);
             return;
         }
@@ -126,6 +151,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('angular-webview.start', () => {
       WebPanel.createOrShow(context.extensionPath);
+    }),
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('angular-webview.update-title', () => {
+      WebPanel.updateTitle(context.extensionPath);
     }),
   );
 }
