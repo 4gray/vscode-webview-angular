@@ -3,7 +3,7 @@
   "description": "Starter template for your next VSCode extension based on Angular",
   "version": "2.0.0",
   "engines": {
-    "vscode": "^1.76.0"
+    "vscode": "^1.85.0"
   },
   "main": "./dist/ext-src/extension.js",
   "publisher": "4gray",
