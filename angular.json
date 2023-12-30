@@ -70,10 +70,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "vscode-webview-angular:build:production"
+              "buildTarget": "vscode-webview-angular:build:production"
             },
             "development": {
-              "browserTarget": "vscode-webview-angular:build:development"
+              "buildTarget": "vscode-webview-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vscode-webview-angular:build"
+            "buildTarget": "vscode-webview-angular:build"
           }
         },
         "lint": {
